@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEATHER BROADCAST</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Khula:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
 </head>
 
@@ -13,25 +19,26 @@
     <header class="header">
         <div class="container header-container">
 
-            <span class="header-time">
-                18:00
-            </span>
-            <div class="header-button">
-                <button>
-                    lol
-                </button>
+            <div>
+                <button class="header-button"></button>
             </div>
+            <span class="header-time">
+                18:00:00
+            </span>
+
         </div>
     </header>
 
     <div class="main">
         <div class="container main-container">
-            <div class="main-buttons">
-                <input type="text" placeholder="enter the city">
-                <button>search</button>
+
+            <div class="main-wrapper">
+                <input class="main-input" type="text" placeholder="Enter the city">
+                <button class="main-btn">Search</button>
             </div>
+
             <div class="weather-today">
-                <span class="today">TODAY</span>
+                <h1 class="today">TODAY</h1>
 
                 <div class="main-information">
                     <h2 class="name-city">
@@ -39,10 +46,14 @@
                     </h2>
                     <h2 class="time"></h2>
                     <h2 class="temperature">
-                        25
+                        25°C
                     </h2>
                 </div>
+
                 <div class="extra-information">
+                    <span class="precipitation">
+                        вероятность осадков
+                    </span>
                     <span class="humidity">
                         влажность
                     </span>
