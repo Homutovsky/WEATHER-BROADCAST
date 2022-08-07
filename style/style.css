@@ -25,6 +25,13 @@
     }
 }
 
+body {
+    height:100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .container {
     max-width: 1170px;
     margin: 0 auto;
@@ -35,10 +42,6 @@
 .footer {
     background-color: #a9eab7;
     opacity: 0.7;
-}
-
-.header {
-    margin-bottom: 20px;
 }
 
 .header-container,
@@ -59,15 +62,19 @@
 
 .header-time {
     font-size: 30px;
-    padding: 28px 0;
+    padding: 20px 0;
     margin: 0 auto;
 }
 
+.main-container {
+    display: flex;
+}
+
 .main-wrapper {
-    margin-bottom: 30px;
     display: flex;
     justify-content: end;
-    width: 100%;
+    margin-left: 100px;
+    transform: translateY(-120%);
 }
 
 
@@ -95,18 +102,21 @@
 
 .weather-today {
     max-width: 350px;
-    margin: 0 auto;
+    margin-left: calc(50vw);
+    transform: translateX(-50%);
+}
+
+.date {
+    text-align: center;
 }
 
 .today {
     font-size: 100px;
     font-family: 'Caveat', cursive;
-    margin-bottom: 20px;
     color: #acf4ca;
     text-align: center;
     position: relative;
 }
-
 .today::before {
     content: '';
     display: block;
@@ -115,7 +125,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    animation: todayAnimation 0.9s ease;
+    background-color:#000000;
 }
 
 .today::after {
@@ -130,13 +140,14 @@
 
 .main-information {
     display: flex;
-    column-gap: 25px;
+    column-gap: 15px;
     justify-content: center;
 }
 
 .name-city,
 .temperature {
     font-size: 40px;
+    color:#000000;
 }
 
 .extra-information {
@@ -144,11 +155,33 @@
     flex-direction: column;
     font-style: italic;
     opacity: 0.7;
-    margin-left: 55px;
+    margin-left:15px;
+}
+
+.weather-list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;;
+}
+
+.weather-item {
+    padding:30px;
+    background-color: rgb(238, 238, 242);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.weather-item:hover {
+    transform:  scale(1.3) ;
+    transition: all 0.3s linear;
 }
 
 
 
+.footer {
+    padding:25px;
+}
 .footer-info {
     font-size: 20px;
 }
