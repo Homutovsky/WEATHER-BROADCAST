@@ -1,17 +1,23 @@
+@keyframes allWeather {
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
 .sunny {
-    animation: sunny 5s linear infinite;
+    animation: allWeather 5s linear infinite;
     background: linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
     position: absolute;
-    left: -60px;
-    top: 80px;
+    left: -65px;
+    top: 40px;
 }
 
 .sunny1 {
     animation: sunny 5s linear infinite;
     background: linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
     position: absolute;
-    left: 280px;
-    top: 80px;
+    left: 282px;
+    top: 40px;
 }
 
 .sunny:after,
@@ -35,15 +41,10 @@
     top: 0px;
 }
 
-@keyframes sunny {
-    50% {
-        transform: translateY(-5px);
-    }
-}
 
 .cloudy,
 .cloudy1 {
-    animation: cloudy 5s ease-in-out infinite;
+    animation: allWeather 5s ease-in-out infinite;
     background: #ffffff;
     border-radius: 50%;
     box-shadow:
@@ -58,25 +59,18 @@
 }
 
 .cloudy {
-    left: -120px;
-    top: 87px;
+    left: -115px;
+    top: 45px;
 }
 
 .cloudy1 {
     left: 270px;
-    top: 87px;
+    top: 45px;
 }
-
-@keyframes cloudy {
-    50% {
-        transform: translateY(-5px);
-    }
-}
-
 
 .rainy,
 .rainy1 {
-    animation: rainy 5s ease-in-out infinite 1s;
+    animation: allWeather 5s ease-in-out infinite 1s;
     background: #CCCCCC;
     border-radius: 50%;
     box-shadow:
@@ -93,13 +87,13 @@
 }
 
 .rainy {
-    left: -120px;
-    top: 87px;
+    left: -115px;
+    top: 45px;
 }
 
 .rainy1 {
-    left: 280px;
-    top: 87px;
+    left: 270px;
+    top: 45px;
 }
 
 .rainy:before,
@@ -115,11 +109,7 @@
     transform: scale(.9);
 }
 
-@keyframes rainy {
-    50% {
-        transform: translateY(-5px);
-    }
-}
+
 
 @keyframes rainy_rain {
     0% {
@@ -221,7 +211,7 @@
 
 .stormy,
 .stormy1 {
-    animation: stormy 5s ease-in-out infinite;
+    animation: allWeather 5s ease-in-out infinite;
     background: #222222;
     border-radius: 50%;
     box-shadow:
@@ -236,15 +226,14 @@
 }
 
 .stormy {
-    left: -120px;
-    top: 87px;
+    left: -115px;
+    top: 45px;
 }
 
 .stormy1 {
     left: 270px;
-    top: 87px;
+    top: 45px;
 }
-
 
 .stormy:before,
 .stormy1:before {
@@ -286,13 +275,6 @@
 }
 
 
-
-@keyframes stormy {
-    50% {
-        transform: translateY(-5px);
-    }
-}
-
 @keyframes stormy_thunder {
     0% {
         transform: rotate(20deg);
@@ -313,4 +295,43 @@
         transform: rotate(-34deg);
         opacity: 0;
     }
+}
+
+.cloud-sun,
+.cloud-sun1 {
+    background: #FFEE44;
+    border-radius: 50%;
+    box-shadow: rgba(255, 255, 0, 0.2) 0 0 0 5px;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+}
+
+.cloud-sun {
+    left: -60px;
+    top: 20px;
+}
+
+.cloud-sun1 {
+    left: 310px;
+    top: 20px;
+}
+
+.cloud-sun:after,
+.cloud-sun1:after {
+    content: '';
+    animation: allWeather 5s ease-in-out infinite;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow:
+        #ffffff 52px -12px 0 -4px,
+        #ffffff 20px -20px,
+        #ffffff 24px 8px,
+        #ffffff 48px 12px 0 -8px,
+        #ffffff 68px 4px 0 -4px;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    left: -50px;
+    top: 30px;
 }
