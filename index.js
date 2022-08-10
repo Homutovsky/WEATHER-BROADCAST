@@ -1,6 +1,12 @@
 const clock = document.querySelector(".header-time");
 const dateToday = document.querySelector(".date-today");
 const dayWeek = document.querySelector(".day-week");
+const headerBtn = document.querySelector(".header-button");
+const footerInfo = document.querySelector(".footer-info");
+const footerImg = document.querySelector(".footer-img");
+const loo = document.querySelector(".loo");
+
+
 
 function clockTimer() {
     const date = new Date();
@@ -27,6 +33,37 @@ function clockTimer() {
 }
 clockTimer()
 
+let gitAvatar;
+let gitName;
+let gitBio;
+let createDiv;
+const creatorInformation = fetch('https://api.github.com/users/homutovsky')
+creatorInformation
+    .then((response) => {
+        const promise = response.json();
+        return promise
+    })
+    .then((data) => {
+        gitAvatar = data.avatar_url;
+        gitName = data.name;
+        gitBio = data.bio;
+        gitBio ? gitBio : gitBio = 'Front-end developer'
+    })
 
+footerInfo.addEventListener('mouseover', () => {
+    footerImg.src = gitAvatar;
+    const newElement = document.createElement('div');
+    footerInfo.after(newElement);
+    newElement.className = 'create-div';
+    createDiv = document.querySelector(".create-div");
+    createDiv.textContent = `${gitName} - ${gitBio}`;
+})
 
+footerInfo.addEventListener('mouseout', () => {
+    footerImg.src = "img/footer-git_icon.svg";
+    createDiv.remove()
+})
 
+headerBtn.addEventListener('click', () => {
+    const changerPhoto = fetch(https://api.flickr.com/services)
+})
