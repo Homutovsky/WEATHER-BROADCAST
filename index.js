@@ -4,8 +4,8 @@ const dayWeek = document.querySelector(".day-week");
 const headerBtn = document.querySelector(".header-button");
 const footerInfo = document.querySelector(".footer-info");
 const footerImg = document.querySelector(".footer-img");
-const loo = document.querySelector(".loo");
-
+const body = document.querySelector("body");
+const key = '3ccd8c73603482c1dfb8a13e3f0b3b5b';
 
 
 function clockTimer() {
@@ -33,16 +33,17 @@ function clockTimer() {
 }
 clockTimer()
 
+function request(url, defaultData) {
+    return fetch(url)
+        .then(response => response.ok ? response.json() : defaultData)
+}
+
 let gitAvatar;
 let gitName;
 let gitBio;
 let createDiv;
-const creatorInformation = fetch('https://api.github.com/users/homutovsky')
-creatorInformation
-    .then((response) => {
-        const promise = response.json();
-        return promise
-    })
+
+request('https://api.github.com/users/homutovsky')
     .then((data) => {
         gitAvatar = data.avatar_url;
         gitName = data.name;
@@ -64,6 +65,50 @@ footerInfo.addEventListener('mouseout', () => {
     createDiv.remove()
 })
 
+let i = 0;
+let j = 0;
+// let images;
+const tags = 'nature'
+
+const flickr = {
+    url: 'https://www.flickr.com/',
+    getRequestUrl(tags) {
+        return (`${this.url}/services/rest/?method=flickr.photos.search&api_key=${key}&tags=${tags}&tag_mode=all&extras=url_h&format=json&nojsoncallback=1`);
+    },
+}
+
+defaultData = {
+    photos: {
+        photo: [
+            'https://live.staticflickr.com/65535/50614166012_adb10128a1_h.jpg',
+            'https://live.staticflickr.com/65535/52277006822_05473162a0_h.jpg',
+            'https://live.staticflickr.com/65535/52278705520_8da4f92f2e_h.jpg',
+            'https://live.staticflickr.com/65535/52278712790_abc7cfa32e_h.jpg',
+            'https://live.staticflickr.com/65535/52278274238_35a9428f6b_h.jpg']
+    }
+}
+
+
+
+
+
 headerBtn.addEventListener('click', () => {
-    const changerPhoto = fetch(https://api.flickr.com/services)
+
+    request(flickr.getRequestUrl(tags))
+        .then(data => {
+            const { photo: images } = data.photos;
+            console.log(images)
+        })
+
+    if (images[i].url_h) {
+        document.body.style.backgroundImage = `url('${images[i].url_h}')`;
+        i++;
+    } else {
+        document.body.style.backgroundImage = `url('${defaultData.photos.photo[i]}')`;
+        j++;
+        if (j === 5) {
+            j = 0;
+        }
+    }
+
 })
