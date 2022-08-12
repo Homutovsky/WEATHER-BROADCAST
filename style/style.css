@@ -33,6 +33,7 @@ body {
     background-image: url(/img/bg-main.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    transition: background-image 0.3s
 }
 
 .container {
