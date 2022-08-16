@@ -1,9 +1,11 @@
 import { clock, dateToday, dayWeek } from './nodes.js';
 
-
+export let timeToDay = [];
 export function clockTimer() {
     const date = new Date();
     const time = [date.getHours(), date.getMinutes(), date.getSeconds()];
+
+    timeToDay = [...time]
 
     const dayOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const monthOfyear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

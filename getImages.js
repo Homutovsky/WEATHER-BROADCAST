@@ -1,6 +1,7 @@
 import { key } from './nodes.js';
 import { request } from './index.js';
-const tags = 'nature';
+import { timeToDay } from './dateAndTime.js';
+
 export let images = [];
 
 const flickr = {
@@ -8,6 +9,17 @@ const flickr = {
     getRequestUrl(tags) {
         return (`${this.url}/services/rest/?method=flickr.photos.search&api_key=${key}&tags=${tags}&tag_mode=all&extras=url_h&format=json&nojsoncallback=1`);
     },
+}
+
+let tags;
+if (timeToDay[0] <= 6) {
+    tags = 'night,twilight,moon';
+} else if (timeToDay[0] >= 6 && timeToDay[0] <= 12) {
+    tags = 'morning,sunrise,dew';
+} else if (timeToDay[0] >= 12 && timeToDay[0] <= 18) {
+    tags = 'evening,sunset,nature';
+} else {
+    tags = 'night,twilight,moon';
 }
 request(flickr.getRequestUrl(tags))
     .then(data => {
