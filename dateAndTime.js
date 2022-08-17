@@ -1,6 +1,6 @@
 import { clock, dateToday, dayWeek } from './nodes.js';
-
 export let timeToDay = [];
+
 export function clockTimer() {
     const date = new Date();
     const time = [date.getHours(), date.getMinutes(), date.getSeconds()];
@@ -26,3 +26,4 @@ export function clockTimer() {
 
     setTimeout(clockTimer, 1000);
 }
+

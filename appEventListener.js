@@ -46,17 +46,14 @@ export const giveEventListener = function () {
         }
     })
 
-
-    setInterval(() => {
+    mainInput.addEventListener('input', (event) => {
+        console.log(event)
         if (mainInput.value) {
             mainBtn.disabled = false;
         } else {
             mainBtn.disabled = true;
         }
-    }, 20)
-    // onchange = (event) => {
-
-    // }
+    })
 
     mainInput.addEventListener('click', () => {
         console.log(1)

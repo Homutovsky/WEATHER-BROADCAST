@@ -1,8 +1,10 @@
 import { key } from './nodes.js';
 import { request } from './index.js';
 import { timeToDay } from './dateAndTime.js';
+import { clockTimer } from './dateAndTime.js';
 
 export let images = [];
+clockTimer();
 
 const flickr = {
     url: 'https://www.flickr.com/',
@@ -17,9 +19,9 @@ if (timeToDay[0] <= 6) {
 } else if (timeToDay[0] >= 6 && timeToDay[0] <= 12) {
     tags = 'morning,sunrise,dew';
 } else if (timeToDay[0] >= 12 && timeToDay[0] <= 18) {
-    tags = 'evening,sunset,nature';
+    tags = 'afternoon,sun,nature';
 } else {
-    tags = 'night,twilight,moon';
+    tags = 'evening,sunset,nature';
 }
 request(flickr.getRequestUrl(tags))
     .then(data => {
@@ -29,8 +31,6 @@ request(flickr.getRequestUrl(tags))
             };
         });
     });
-
-
 
 
     // const defaultData = {

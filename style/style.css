@@ -110,6 +110,7 @@ body {
     background-position-y: center;
     outline: 0;
     cursor: pointer;
+    color: #fff
 }
 
 .main-input::placeholder {
