@@ -38,7 +38,11 @@ export const giveEventListener = function () {
         i++;
         j++;
         if (images[i]) {
-            document.body.style.backgroundImage = `url('${images[i]}')`;
+            const img = new Image();
+            img.src = images[i]
+            img.addEventListener('load', () => {
+                document.body.style.backgroundImage = `url('${images[i]}')`;
+            })
         }
     })
 
