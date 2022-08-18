@@ -6,8 +6,9 @@ import { timeToDay } from './dateAndTime.js';
 giveEventListener();
 clockTimer();
 
-export function request(url, defaultData) {
+export function request(url) {
     return fetch(url)
-        .then(response => response.ok ? response.json() : defaultData)
+        .then(response => response.json())
 }
+
 

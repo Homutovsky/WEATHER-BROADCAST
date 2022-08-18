@@ -1,6 +1,7 @@
-import { headerBtn, footerInfo, footerImg, mainInput, mainBtn, body } from './nodes.js';
+import { headerBtn, footerInfo, footerImg, mainInput, mainBtn, geoKey } from './nodes.js';
 import { request } from './index.js';
 import { images } from './getImages.js';
+
 
 export const giveEventListener = function () {
     request();
@@ -46,20 +47,47 @@ export const giveEventListener = function () {
         }
     })
 
+    let city;
+    let lat;
+    let lng;
     mainInput.addEventListener('input', (event) => {
-        console.log(event)
         if (mainInput.value) {
             mainBtn.disabled = false;
         } else {
             mainBtn.disabled = true;
         }
-    })
-
-    mainInput.addEventListener('click', () => {
-        console.log(1)
+        city = mainInput.value;
     })
 
     mainBtn.addEventListener('click', () => {
-        console.log(2)
+
+        const geo = {
+            url: 'https://api.opencagedata.com/',
+            getRequestUrl(city) {
+                return (`${this.url}/geocode/v1/json?q=${city}&key=${geoKey}`);
+            },
+        }
+
+        request(geo.getRequestUrl(city))
+            .then(date => {
+                let getQueryResult = [];
+                getQueryResult.push(date.results[0])
+                lat = getQueryResult[0].geometry.lat
+                lng = getQueryResult[0].geometry.lng
+
+            })
     })
 }
+
+let localLatitude;
+let localLongitude;
+navigator.geolocation.getCurrentPosition((succes) => {
+    if (succes) {
+        localLatitude = (succes.coords.latitude)
+        localLongitude = (succes.coords.longitude)
+        console.log(localLatitude, localLongitude)
+    } else {
+        localLatitude = '53.90336';
+        localLongitude = '27.5120128';
+    }
+})
