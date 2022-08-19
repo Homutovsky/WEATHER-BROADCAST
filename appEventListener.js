@@ -1,6 +1,8 @@
-import { headerBtn, footerInfo, footerImg, mainInput, mainBtn, geoKey } from './nodes.js';
+import { headerBtn, footerInfo, footerImg, mainInput, mainBtn, weatherKey } from './nodes.js';
 import { request } from './index.js';
 import { images } from './getImages.js';
+import { getCityCordinates } from './getCityCordinates.js';
+export let city;
 
 
 export const giveEventListener = function () {
@@ -47,9 +49,7 @@ export const giveEventListener = function () {
         }
     })
 
-    let city;
-    let lat;
-    let lng;
+
     mainInput.addEventListener('input', (event) => {
         if (mainInput.value) {
             mainBtn.disabled = false;
@@ -60,34 +60,49 @@ export const giveEventListener = function () {
     })
 
     mainBtn.addEventListener('click', () => {
-
-        const geo = {
-            url: 'https://api.opencagedata.com/',
-            getRequestUrl(city) {
-                return (`${this.url}/geocode/v1/json?q=${city}&key=${geoKey}`);
-            },
-        }
-
-        request(geo.getRequestUrl(city))
-            .then(date => {
-                let getQueryResult = [];
-                getQueryResult.push(date.results[0])
-                lat = getQueryResult[0].geometry.lat
-                lng = getQueryResult[0].geometry.lng
-
-            })
+        getCityCordinates()
     })
+
+    document.addEventListener('keydown', event => {
+        if (event.code === 'Enter' && city !== '') {
+            getCityCordinates()
+        }
+    })
+
+    let localLatitude;
+    let localLongitude;
+    navigator.geolocation.getCurrentPosition((succes) => {
+        if (succes) {
+            const { latitude: lat,
+                longitude: lng } = succes.coords;
+            localLatitude = lat;
+            localLongitude = lng;
+        } else {
+            localLatitude = '53.90336';
+            localLongitude = '27.5120128';
+        }
+    })
+
+    const getWeatherForecast = function () {
+        const weatherQuery = {
+            url: 'https://api.openweathermap.org/',
+            getRequestUrl() {
+                return (`${this.url}/data/3.0/onecall?lat=${localLatitude}&lon=${localLongitude}&exclude='minutely'&appid=${weatherKey}`);
+            }
+        }
+        request(weatherQuery.getRequestUrl())
+            .then(date => {
+                console.log(date, 1)
+            })
+
+    }
+    getWeatherForecast()
+
+
+
+
 }
 
-let localLatitude;
-let localLongitude;
-navigator.geolocation.getCurrentPosition((succes) => {
-    if (succes) {
-        localLatitude = (succes.coords.latitude)
-        localLongitude = (succes.coords.longitude)
-        console.log(localLatitude, localLongitude)
-    } else {
-        localLatitude = '53.90336';
-        localLongitude = '27.5120128';
-    }
-})
+
+
+
