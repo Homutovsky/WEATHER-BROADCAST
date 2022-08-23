@@ -19,7 +19,7 @@ if (timeToDay[0] <= 6) {
 } else if (timeToDay[0] >= 6 && timeToDay[0] <= 12) {
     tags = 'morning,sunrise,dew';
 } else if (timeToDay[0] >= 12 && timeToDay[0] <= 18) {
-    tags = 'afternoon,sun,nature';
+    tags = 'afternoon,sun,canyon';
 } else {
     tags = 'evening,sunset,nature';
 }

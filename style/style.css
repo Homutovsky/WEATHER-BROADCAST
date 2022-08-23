@@ -134,7 +134,7 @@ body {
     font-style: italic;
 }
 
-.weather-wrapper {
+.weather-condition {
     position: relative;
 }
 
@@ -150,6 +150,7 @@ body {
     display: flex;
     column-gap: 15px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .name-city,
@@ -162,8 +163,18 @@ body {
     display: flex;
     flex-direction: column;
     font-style: italic;
-    opacity: 0.7;
     margin-left: 15px;
+}
+
+.sun-move:hover,
+.humidity:hover,
+.speed-wind:hover,
+.pressure:hover,
+.date-today:hover,
+.day-week:hover,
+.name-city:hover,
+.temperature:hover {
+    color: #a9eab7;
 }
 
 .weather-list {

@@ -1,6 +1,6 @@
-import { city } from "./appEventListener.js";
 import { request } from "./index.js";
 import { geoKey, nameCity } from "./nodes.js";
+import { giveEventListener, city } from "./appEventListener.js";
 
 export let cityLongitude = [];
 export let cityLatitude = [];
@@ -14,13 +14,17 @@ export const getCityCordinates = function () {
 			return `${this.url}/geocode/v1/json?q=${city}&key=${geoKey}`;
 		},
 	};
-	request(geo.getRequestUrl("London")).then((date) => {
+	request(geo.getRequestUrl(city)).then((date) => {
 		const { lat: x, lng: y } = date.results[0].geometry;
 		if (x && y) {
 			nameCity.textContent = city;
 		}
 		cityLatitude.push(x);
 		cityLongitude.push(y);
+		if (cityLongitude.length > 1) {
+			cityLatitude.shift()
+			cityLongitude.shift();
+		}
 	});
 };
 export const getLocalPosition = function () {

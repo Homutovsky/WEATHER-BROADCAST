@@ -11,4 +11,16 @@ export const mainInput = document.querySelector(".main-input");
 export const mainBtn = document.querySelector(".main-btn");
 export const body = document.querySelector("body");
 export const nameCity = document.querySelector(".name-city");
+export const temperature = document.querySelector(".temperature");
+export const humidity = document.querySelector(".humidity");
+export const speedWind = document.querySelector(".speed-wind");
+export const sunMove = document.querySelector(".sun-move");
+export const pressure = document.querySelector(".pressure");
+export const header = document.querySelector(".header");
+
+
+
+
+
+
 

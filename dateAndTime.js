@@ -26,4 +26,3 @@ export function clockTimer() {
 
     setTimeout(clockTimer, 1000);
 }
-
