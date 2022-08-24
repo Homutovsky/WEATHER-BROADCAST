@@ -166,7 +166,6 @@ body {
     margin-left: 15px;
 }
 
-.sun-move:hover,
 .humidity:hover,
 .speed-wind:hover,
 .pressure:hover,
@@ -186,7 +185,7 @@ body {
 }
 
 .weather-item {
-    width: 88px;
+    width: 150px;
     height: 140px;
     background-color: rgb(238, 238, 242);
     border-radius: 8px;

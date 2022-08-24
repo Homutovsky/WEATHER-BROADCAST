@@ -17,7 +17,7 @@ let tags;
 if (timeToDay[0] <= 6) {
     tags = 'night,twilight,moon';
 } else if (timeToDay[0] >= 6 && timeToDay[0] <= 12) {
-    tags = 'morning,sunrise,dew';
+    tags = 'morning,sunrise';
 } else if (timeToDay[0] >= 12 && timeToDay[0] <= 18) {
     tags = 'afternoon,sun,canyon';
 } else {

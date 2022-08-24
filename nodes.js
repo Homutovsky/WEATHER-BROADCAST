@@ -14,9 +14,21 @@ export const nameCity = document.querySelector(".name-city");
 export const temperature = document.querySelector(".temperature");
 export const humidity = document.querySelector(".humidity");
 export const speedWind = document.querySelector(".speed-wind");
-export const sunMove = document.querySelector(".sun-move");
 export const pressure = document.querySelector(".pressure");
 export const header = document.querySelector(".header");
+
+export const weatherDateFirst = document.querySelector(".weather-data__first");
+export const weatherDayFirst = document.querySelector(".weather-day__first");
+export const weatherWeatherFirst = document.querySelector(".weather-weather__first");
+export const weatherTemperatureFirst = document.querySelector(".weather-temperature__first");
+
+export const weatherDateSecond = document.querySelector(".weather-data__second");
+export const weatherDaySecond = document.querySelector(".weather-day__second");
+export const weatherWeatherSecond = document.querySelector(".weather-weather__second");
+export const weatherTemperatureSecond = document.querySelector(".weather-temperature__second");
+
+
+
 
 
 

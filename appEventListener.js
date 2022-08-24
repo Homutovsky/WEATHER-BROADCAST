@@ -8,9 +8,16 @@ import {
     temperature,
     humidity,
     speedWind,
-    sunMove,
     pressure,
-    header
+    header,
+    weatherDateFirst,
+    weatherDayFirst,
+    weatherWeatherFirst,
+    weatherTemperatureFirst,
+    weatherDateSecond,
+    weatherDaySecond,
+    weatherWeatherSecond,
+    weatherTemperatureSecond
 } from "./nodes.js";
 import { request } from "./index.js";
 import { images } from "./getImages.js";
@@ -104,29 +111,11 @@ export const giveEventListener = function () {
             units: 'metric',
             exclude: 'current,minutely,hourly,daily',
             getRequestUrl() {
-                return `${this.url}/data/2.5/weather?lat=${Latitude}&lon=${Longitude}&exclude=${this.exclude}&appid=${weatherKey}&units=${this.units}`;
+                return `${this.url}/data/2.5/forecast?lat=${Latitude}&lon=${Longitude}&exclude=${this.exclude}&appid=${weatherKey}&units=${this.units}`;
             },
         };
         request(weatherQuery.getRequestUrl()).then((date) => {
-            temperature.textContent = `${Math.round(date.main.temp)}  °C`;
-            humidity.textContent = `влажность  ${date.main.humidity} %`;
-            speedWind.textContent = `скорость ветра  ${date.wind.speed} м/с`;
-            const currentHour = new Date;
-            let hoursSunset = new Date(+`${date.sys.sunset * 1000}`).getHours();
-            let minutesSunset = new Date(+`${date.sys.sunset * 1000}`).getMinutes()
-            let hoursSunrise = new Date(+`${date.sys.sunrise * 1000}`).getHours();
-            let minutesSunrise = new Date(+`${date.sys.sunrise * 1000}`).getMinutes()
-
-            if (currentHour.getHours() < hoursSunset) {
-                minutesSunset = minutesSunset < 10 ? '0' + minutesSunset : minutesSunset;
-                hoursSunset = hoursSunset < 10 ? '0' + hoursSunset : hoursSunset;
-                sunMove.textContent = `закат в ${hoursSunset}:${minutesSunset}`
-            } else {
-                minutesSunrise = minutesSunrise < 10 ? '0' + minutesSunrise : minutesSunrise;
-                hoursSunrise = hoursSunrise < 10 ? '0' + hoursSunrise : hoursSunrise;
-                sunMove.textContent = `рассвет в ${hoursSunrise}:${minutesSunrise}`
-            }
-            pressure.textContent = `давление  ${date.main.pressure * 0.75} мм рт ст`;
+            const newDate = new Date;
 
             const div = document.createElement('div');
             const div1 = document.createElement('div1');
@@ -137,22 +126,61 @@ export const giveEventListener = function () {
             const weatherCondition = document.querySelector(".weather-condition");
             const weatherCondition1 = document.querySelector(".weather-condition1");
 
-            if (`${date.weather[0].main}` === 'Clear') {
+            const { list: objectWithArr } = date;
+            const { [0]: extraInfromation } = date.list;
+            const { [0]: weatherInformation } = date.list[0].weather;
+            const main = `${weatherInformation.main}`;
+            const description = `${weatherInformation.description}`;
+
+            temperature.textContent = `${Math.round(extraInfromation.main.temp)}  °C`;
+            humidity.textContent = `влажность  ${extraInfromation.main.humidity} %`;
+            pressure.textContent = `давление  ${extraInfromation.main.pressure * 0.75} мм рт ст`;
+            speedWind.textContent = `скорость ветра  ${date.list[0].wind.speed} м/с`;
+
+            if (main === 'Clear') {
                 weatherCondition.classList.add('sunny');
                 weatherCondition1.classList.add('sunny1');
-            } else if (`${date.weather[0].description}` === 'broken clouds' || `${date.weather[0].description}` === 'overcast clouds' || `${date.weather[0].description}` === 'scattered clouds') {
+            } else if (description === 'broken clouds' || description === 'overcast clouds' || description === 'scattered clouds') {
                 weatherCondition.classList.add('cloudy');
                 weatherCondition1.classList.add('cloudy1');
-            } else if (`${date.weather[0].description}` === 'moderate rain' || `${date.weather[0].description}` === 'light rain') {
+            } else if (description === 'moderate rain' || description === 'light rain') {
                 weatherCondition.classList.add('rainy');
                 weatherCondition1.classList.add('rainy1');
-            } else if (`${date.weather[0].description}` === "few clouds") {
+            } else if (description === "few clouds") {
                 weatherCondition.classList.add('cloud-sun');
                 weatherCondition1.classList.add('cloud-sun1');
-            } else if (`${date.weather[0].description}` === "heavy intensity rain") {
+            } else if (description === "heavy intensity rain") {
                 weatherCondition.classList.add('stormy');
                 weatherCondition1.classList.add('stormy1');
             }
+            const currentMonth = newDate.getMonth() < 10 ? '0' + (newDate.getMonth() + 1) : newDate.getMonth() + 1;
+            const currentDate = newDate.getDate() < 10 ? '0' + newDate.getDate() : newDate.getDate();
+
+            let tomorrowDate = `${newDate.getFullYear()}-${currentMonth}-${+currentDate + 1} 15:00:00`;
+            let index;
+            let index1;
+            let index2;
+            for (i = 1; i < objectWithArr.length; i++) {
+                if (objectWithArr[i].dt_txt === tomorrowDate) {
+                    index = i;
+                    index1 = i + 8
+                    index2 = i + 16
+                    break
+                }
+            }
+            console.log(index1)
+            weatherDateFirst.textContent = `${+currentDate + 1}-${currentMonth}-${newDate.getFullYear()}`
+            weatherDayFirst.textContent = ('' + new Date(newDate.getTime() + 86400000)).split(' ')[0];
+            weatherWeatherFirst.textContent = objectWithArr[index].weather[0].description;
+            weatherTemperatureFirst.textContent = `${Math.round(objectWithArr[index].main.temp)} °C`
+
+            weatherDateSecond.textContent = `${+currentDate + 2}-${currentMonth}-${newDate.getFullYear()}`
+            weatherDaySecond.textContent = ('' + new Date(newDate.getTime() + (86400000 * 2))).split(' ')[0];
+            weatherWeatherSecond.textContent = objectWithArr[index1].weather[0].description;
+            weatherTemperatureSecond.textContent = `${Math.round(objectWithArr[index1].main.temp)} °C`
+
+
+
             console.log(date, 3);
         });
     }
