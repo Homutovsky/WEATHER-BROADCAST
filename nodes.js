@@ -27,7 +27,20 @@ export const weatherDaySecond = document.querySelector(".weather-day__second");
 export const weatherWeatherSecond = document.querySelector(".weather-weather__second");
 export const weatherTemperatureSecond = document.querySelector(".weather-temperature__second");
 
+export const weatherDateThird = document.querySelector(".weather-data__third");
+export const weatherDayThird = document.querySelector(".weather-day__third");
+export const weatherWeatherThird = document.querySelector(".weather-weather__third");
+export const weatherTemperatureThird = document.querySelector(".weather-temperature__third");
 
+export const weatherDateFourth = document.querySelector(".weather-data__fourth");
+export const weatherDayFourth = document.querySelector(".weather-day__fourth");
+export const weatherWeatherFourth = document.querySelector(".weather-weather__fourth");
+export const weatherTemperatureFourth = document.querySelector(".weather-temperature__fourth");
+
+export const weatherDateFifth = document.querySelector(".weather-data__fifth");
+export const weatherDayFifth = document.querySelector(".weather-day__fifth");
+export const weatherWeatherFifth = document.querySelector(".weather-weather__fifth");
+export const weatherTemperatureFifth = document.querySelector(".weather-temperature__fifth");
 
 
 

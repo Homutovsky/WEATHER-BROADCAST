@@ -1,13 +1,13 @@
 import { request } from "./index.js";
-import { geoKey, nameCity } from "./nodes.js";
-import { giveEventListener, city } from "./appEventListener.js";
+import { geoKey, nameCity, mainInput } from "./nodes.js";
 
 export let cityLongitude = [];
 export let cityLatitude = [];
 export let localLatitude = [];
 export let localLongitude = [];
 
-export const getCityCordinates = function () {
+export const getCityCordinates = function (city) {
+	city = mainInput.value ? mainInput.value : 'Minsk'
 	const geo = {
 		url: "https://api.opencagedata.com/",
 		getRequestUrl(city) {
