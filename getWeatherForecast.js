@@ -5,6 +5,10 @@ import {
     speedWind,
     pressure,
     header,
+    weatherDateToday,
+    weatherDayToday,
+    weatherWeatherToday,
+    weatherTemperatureToday,
     weatherDateFirst,
     weatherDayFirst,
     weatherWeatherFirst,
@@ -89,6 +93,7 @@ export const getWeatherForecast = function (Latitude, Longitude) {
         const currentMonth = newDate.getMonth() < 10 ? '0' + (newDate.getMonth() + 1) : newDate.getMonth() + 1;
         const currentDate = newDate.getDate() < 10 ? '0' + newDate.getDate() : newDate.getDate();
 
+
         let tomorrowDate = `${newDate.getFullYear()}-${currentMonth}-${+currentDate + 1} 15:00:00`;
         let index;
         objectWithArr.forEach((elem, ind) => {
@@ -98,18 +103,19 @@ export const getWeatherForecast = function (Latitude, Longitude) {
             }
         })
 
+        console.log(date, 3);
         function createCardWeather(weatherDate, weatherDay, weatherWeather, weatherTemperature, nomber, index) {
-            weatherDate.textContent = `${+currentDate + nomber}-${currentMonth}-${newDate.getFullYear()}`
+            weatherDate.textContent = `${('' + new Date(newDate.getTime() + (86400000 * nomber))).split(' ')[2]}-${currentMonth}-${newDate.getFullYear()}`
             weatherDay.textContent = ('' + new Date(newDate.getTime() + (86400000 * nomber))).split(' ')[0];
             weatherWeather.textContent = objectWithArr[index].weather[0].description;
             weatherTemperature.textContent = `${Math.round(objectWithArr[index].main.temp)} °C`
         }
+        createCardWeather(weatherDateToday, weatherDayToday, weatherWeatherToday, weatherTemperatureToday, 0, 0);
         createCardWeather(weatherDateFirst, weatherDayFirst, weatherWeatherFirst, weatherTemperatureFirst, 1, index);
         createCardWeather(weatherDateSecond, weatherDaySecond, weatherWeatherSecond, weatherTemperatureSecond, 2, index + 8);
         createCardWeather(weatherDateThird, weatherDayThird, weatherWeatherThird, weatherTemperatureThird, 3, index + 16);
         createCardWeather(weatherDateFourth, weatherDayFourth, weatherWeatherFourth, weatherTemperatureFourth, 4, index + 24);
         createCardWeather(weatherDateFifth, weatherDayFifth, weatherWeatherFifth, weatherTemperatureFifth, 5, index + 31);
 
-        console.log(date, 3);
     });
 }

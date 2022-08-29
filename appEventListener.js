@@ -1,5 +1,5 @@
 import {
-    headerBtn, footerInfo, footerImg, mainInput, mainBtn
+    headerBtn, footerInfo, footerImg, mainInput, mainBtn, weatherItems
 } from "./nodes.js";
 import { request } from "./index.js";
 import { images } from "./getImages.js";
@@ -73,4 +73,12 @@ export const giveEventListener = function () {
             await getWeatherForecast();
         }
     });
-};
+}
+
+
+weatherItems.forEach(weatherItem => {
+    weatherItem.addEventListener('click', (event) => {
+        let cartDate = weatherItem.querySelector('div').textContent
+        console.log(cartDate.split('-')[0])
+    })
+})

@@ -17,6 +17,11 @@ export const speedWind = document.querySelector(".speed-wind");
 export const pressure = document.querySelector(".pressure");
 export const header = document.querySelector(".header");
 
+export const weatherDateToday = document.querySelector(".weather-data__today");
+export const weatherDayToday = document.querySelector(".weather-day__today");
+export const weatherWeatherToday = document.querySelector(".weather-weather__today");
+export const weatherTemperatureToday = document.querySelector(".weather-temperature__today");
+
 export const weatherDateFirst = document.querySelector(".weather-data__first");
 export const weatherDayFirst = document.querySelector(".weather-day__first");
 export const weatherWeatherFirst = document.querySelector(".weather-weather__first");
@@ -42,9 +47,7 @@ export const weatherDayFifth = document.querySelector(".weather-day__fifth");
 export const weatherWeatherFifth = document.querySelector(".weather-weather__fifth");
 export const weatherTemperatureFifth = document.querySelector(".weather-temperature__fifth");
 
-
-
-
+export const weatherItems = document.querySelectorAll(".weather-item");
 
 
 
