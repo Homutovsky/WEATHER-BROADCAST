@@ -8,10 +8,9 @@ getLocalPosition();
 giveEventListener();
 clockTimer();
 setTimeout(() => {
-    getWeatherForecast();
-}, 1000)
+	getWeatherForecast();
+}, 1000);
 
 export function request(url) {
-    return fetch(url).then((response) => response.json());
+	return fetch(url).then((response) => response.json());
 }
-
