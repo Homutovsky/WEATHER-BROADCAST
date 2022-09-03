@@ -111,15 +111,11 @@ export const getWeatherForecast = function (Latitude, Longitude) {
 				: newDate.getDate();
 
 		let tomorrowDate = `${newDate.getFullYear()}-${currentMonth}-${
-			+currentDate + 1
+			'0'+(+currentDate + 1)
 		} 15:00:00`;
 		let index;
-		objectWithArr.forEach((elem, ind) => {
-			elem = objectWithArr[ind].dt_txt;
-			if (elem === tomorrowDate) {
-				index = ind;
-			}
-		});
+	
+		objectWithArr.forEach((elem, ind) => index = elem.dt_txt === tomorrowDate? ind: index);
 
 		function createCardWeather(
 			weatherDate,
@@ -129,6 +125,7 @@ export const getWeatherForecast = function (Latitude, Longitude) {
 			nomber,
 			index
 		) {
+			console.log(objectWithArr)
 			weatherDate.textContent = `${
 				("" + new Date(newDate.getTime() + 86400000 * nomber)).split(
 					" "
