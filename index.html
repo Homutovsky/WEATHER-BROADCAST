@@ -23,7 +23,7 @@
                 <button class="header-button"></button>
             </div>
             <h2 class="header-time">
-                18:00:00
+                --:--:--
             </h2>
         </div>
     </header>
@@ -67,9 +67,16 @@
             <div class="weater-weak">
 
 
-                <div class="main-wrapper">
-                    <input class="main-input" type="text" placeholder="Enter the city">
-                    <button class="main-btn" disabled>Search</button>
+                <div class="search-box">
+                    <div class="search-wrapper">
+                        <input class="search-input" type="text" placeholder="Enter the city">
+                        <button class="search-btn" disabled>Search</button>
+                    </div>
+                    <div class="search-list">
+                        <!-- <p>a</p>
+                        <p>b</p>
+                        <p>c</p> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,42 +84,6 @@
 
     <section class="container">
         <ul class="weather-list">
-            <li class="weather-item">
-                <div class="weather-data__today" data-action="today">data</div>
-                <div class="weather-day__today">day</div>
-                <div class="weather-weather__today">sun</div>
-                <div class="weather-temperature__today">25°C</div>
-            </li>
-            <li class="weather-item">
-                <div class="weather-data__first" data-action="first">data</div>
-                <div class="weather-day__first">day</div>
-                <div class="weather-weather__first">sun</div>
-                <div class="weather-temperature__first">25°C</div>
-            </li>
-            <li class="weather-item">
-                <div class="weather-data__second" data-action="second">data</div>
-                <div class="weather-day__second">day</div>
-                <div class="weather-weather__second">sun</div>
-                <div class="weather-temperature__second">25°C</div>
-            </li>
-            <li class="weather-item">
-                <div class="weather-data__third" data-action="third">data</div>
-                <div class="weather-day__third">day</div>
-                <div class="weather-weather__third">sun</div>
-                <div class="weather-temperature__third">25°C</div>
-            </li>
-            <li class="weather-item">
-                <div class="weather-data__fourth" data-action="fourth">data</div>
-                <div class="weather-day__fourth">day</div>
-                <div class="weather-weather__fourth">sun</div>
-                <div class="weather-temperature__fourth">25°C</div>
-            </li>
-            <li class="weather-item">
-                <div class="weather-data__fifth" data-action="fifth">data</div>
-                <div class="weather-day__fifth">day</div>
-                <div class="weather-weather__fifth">sun</div>
-                <div class="weather-temperature__fifth">25°C</div>
-            </li>
         </ul>
     </section>
 
@@ -123,7 +94,9 @@
             </div>
         </div>
     </footer>
-    <script type="module" src="index.js"></script>
+    <script type="module" src="currentTime.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="search.js"></script>
 </body>
 
 </html>
