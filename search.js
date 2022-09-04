@@ -1,19 +1,10 @@
+import { setSearch } from "./getWeather.js";
+import { request, geo, createHtmlElement, removeChilds } from "./utils.js";
+
 const searchWrapper = document.querySelector(".search-wrapper");
 const searchList = document.querySelector(".search-list");
 const searchInput = document.querySelector(".search-input");
 const searchBtn = document.querySelector(".search-btn");
-const geoKey = "dc1c4dd507e246778fa00eb113d80c9e";
-async function request(url) {
-	const response = await fetch(url);
-	return await response.json();
-}
-
-const geo = {
-	url: "https://api.opencagedata.com/",
-	getRequestUrl(city) {
-		return `${this.url}geocode/v1/json?q=${city}&key=${geoKey}&language=ru&pretty=1`;
-	},
-};
 
 const getSearchResult = (data, searchString) =>
 	data.results.reduce((acc, result) => {
@@ -49,28 +40,28 @@ const addClasses = () => {
 	searchWrapper.classList.add("withResults");
 	searchList.classList.add("withResults");
 };
-const removeClasses = () => {
+export const removeClasses = () => {
 	searchWrapper.classList.remove("withResults");
 	searchList.classList.remove("withResults");
 };
 
-const removeOldResults = (searchResult) => {
+export const removeOldResults = (searchResult) => {
 	if ([...searchList.children].length || !searchResult.length) {
-		[...searchList.children].forEach((oldChild) => {
-			oldChild.remove();
-		});
+		removeChilds(searchList);
 	}
 };
 
 const renderSearchResults = (searchResult) => {
 	searchResult.forEach((result) => {
-		console.log(result);
-		const newResult = document.createElement("p");
-		newResult.className = "search-element";
-		newResult.textContent = result.formatted;
+		const newResult = createHtmlElement(
+			"p",
+			"search-element",
+			result.formatted
+		);
+
 		newResult.id = result.formatted;
 		newResult.setAttribute("lat", result.geometry.lat);
-		newResult.setAttribute("lng", result.geometry.lng);
+		newResult.setAttribute("lon", result.geometry.lng);
 		searchList.append(newResult);
 	});
 };
@@ -87,6 +78,7 @@ searchInput.addEventListener("input", (event) => {
 			}
 			removeOldResults(searchResult);
 			renderSearchResults(searchResult);
+			setSearch();
 		});
 	} else {
 		removeOldResults(searchString);
