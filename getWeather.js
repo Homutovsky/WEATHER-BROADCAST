@@ -32,21 +32,20 @@ const finalizeClick = (text) => {
 
 export const setSearch = () => {
 	const listElements = document.querySelectorAll(".search-element");
-	console.log("listElements", [...listElements]);
 	[...listElements].forEach((listElement) => {
 		listElement.addEventListener("click", (event) => {
-			console.log("event", event);
+
 			finalizeClick(event.target.innerText);
 
 			const lat = event.target.getAttribute("lat");
 			const lon = event.target.getAttribute("lon");
 
 			request(weatherQuery.getRequestUrl(lat, lon)).then((data) => {
+				console.log('data', data)
 				const formatedData = formatWeatherData(data.list);
 				setWeatherDataToSessionStorage(formatedData);
 				const weeklyDays = Object.keys(formatedData);
 				weeklyDays.shift();
-
 				renderWeeklyCards(weeklyDays);
 			});
 		});

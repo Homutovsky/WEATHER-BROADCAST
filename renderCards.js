@@ -2,9 +2,9 @@ import { createHtmlElement, daysOfWeek, removeChilds } from "./utils.js";
 
 const weatherList = document.querySelector(".weather-list");
 
-const getCorrespondingWeatherData = (day, time = "15:00:00") => {
+const getCorrespondingWeatherData = (day, time = "18:00:00") => {
 	const weatherData = JSON.parse(window.sessionStorage.getItem(day));
-	console.log("weatherData", weatherData);
+
 	return weatherData.find(
 		(weatherItem) => weatherItem.dt_txt.split(" ")[1] === time
 	);
@@ -13,7 +13,9 @@ const getCorrespondingWeatherData = (day, time = "15:00:00") => {
 const createCard = (day) => {
 	const newCard = createHtmlElement("li", "weather-item");
 	newCard.setAttribute("day", day);
-	const correspondingWeatherData = getCorrespondingWeatherData(day);
+	let correspondingWeatherData = getCorrespondingWeatherData(day);
+	const weatherData = JSON.parse(window.sessionStorage.getItem(day));
+	correspondingWeatherData = correspondingWeatherData ? correspondingWeatherData : weatherData.at(-1);
 	const tempereture = Math.round(correspondingWeatherData.main.temp);
 	const weather = correspondingWeatherData.weather[0].description;
 
@@ -35,10 +37,6 @@ const createCard = (day) => {
 		"span",
 		"weather-temperature",
 		`${tempereture} °C`
-	);
-	console.log(
-		"correspondingWeatherData",
-		new Date(+(correspondingWeatherData.dt + "000"))
 	);
 
 	newCard.append(
