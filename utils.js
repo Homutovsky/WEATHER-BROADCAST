@@ -46,3 +46,8 @@ export const removeChilds = (parent) => {
 		oldChild.remove();
 	});
 };
+
+export const getDayOfWeek = (dt) => {
+	const currentDay = new Date(+(dt + "000"));
+	return daysOfWeek[currentDay.getDay()];
+};

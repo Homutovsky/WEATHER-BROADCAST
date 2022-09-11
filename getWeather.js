@@ -34,14 +34,12 @@ export const setSearch = () => {
 	const listElements = document.querySelectorAll(".search-element");
 	[...listElements].forEach((listElement) => {
 		listElement.addEventListener("click", (event) => {
-
 			finalizeClick(event.target.innerText);
 
 			const lat = event.target.getAttribute("lat");
 			const lon = event.target.getAttribute("lon");
 
 			request(weatherQuery.getRequestUrl(lat, lon)).then((data) => {
-				console.log('data', data)
 				const formatedData = formatWeatherData(data.list);
 				setWeatherDataToSessionStorage(formatedData);
 				const weeklyDays = Object.keys(formatedData);
