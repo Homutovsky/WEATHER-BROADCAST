@@ -2,7 +2,7 @@ import { request, weatherQuery } from "./utils.js";
 import { removeClasses, removeOldResults } from "./search.js";
 import { renderWeeklyCards } from "./renderCards.js";
 
-const formatWeatherData = (weatherData) => {
+export const formatWeatherData = (weatherData) => {
 	return weatherData.reduce((acc, currData) => {
 		const day = currData.dt_txt.split(" ")[0];
 		if (acc[day]) {
@@ -24,7 +24,7 @@ const setWeatherDataToSessionStorage = (formatedData) => {
 	});
 };
 
-const finalizeClick = (text) => {
+export const finalizeClick = (text) => {
 	document.querySelector(".search-input").value = text;
 	removeClasses();
 	removeOldResults();

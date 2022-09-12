@@ -87,7 +87,7 @@ body {
     margin-left: calc(50vw);
     transform: translateX(-50%);
     position: relative;
-    background-color:rgba(192,192,192,0.5);
+    background-color: rgba(192, 192, 192, 0.5);
     border-radius: 8px;
 }
 
@@ -102,7 +102,7 @@ body {
 }
 
 .search-wrapper {
-    display:flex;
+    display: flex;
 }
 
 .search-input {
@@ -135,22 +135,23 @@ body {
     color: #fff;
 }
 
-.withResults>.search-btn, .withResults>.search-input{
+.withResults>.search-btn,
+.withResults>.search-input {
     border-radius: 0;
 }
 
 .withResults.search-list {
-    display:block;
+    display: block;
     width: 340px;
 }
 
 .search-list {
-    background-color:rgb(169 169 169 / 50%);
+    background-color: rgb(169 169 169 / 50%);
     border-radius: 0 0 25px 25px;
     border: 1px solid #000000;
-    border-top:none;
+    border-top: none;
     padding: 5px 0;
-    display:none;
+    display: none;
 }
 
 .search-element {
@@ -160,15 +161,15 @@ body {
 
 }
 
-.search-element:not(:last-child){
-    border-bottom:1px solid rgb(105 105 105);
+.search-element:not(:last-child) {
+    border-bottom: 1px solid rgb(105 105 105);
 }
 
 .reset-btn {
-    width:50px;
-    height:50px;
-    background:none;
-    border:none;
+    width: 50px;
+    height: 50px;
+    background: none;
+    border: none;
     background-image: url(../img/resetBtn.png);
     background-size: cover;
     position: absolute;
@@ -176,8 +177,9 @@ body {
 
 .date-today,
 .day-week {
+    margin-top: 15px;
     text-align: center;
-    font-style: italic;
+
 }
 
 .weather-condition {
@@ -205,11 +207,17 @@ body {
     color: #000000;
 }
 
+.time {
+    width: 100%;
+    text-align: center;
+}
+
 .extra-information {
     display: flex;
     flex-direction: column;
     font-style: italic;
-    margin-left: 15px;
+    margin-left: 30px;
+
 }
 
 .humidity:hover,
@@ -233,7 +241,7 @@ body {
 .weather-item {
     width: 150px;
     height: 140px;
-    background-color: rgba(238, 238, 242,0.75);
+    background-color: rgba(238, 238, 242, 0.75);
     border-radius: 8px;
     cursor: pointer;
     display: flex;

@@ -1,5 +1,5 @@
-import { setSearch } from "./getWeather.js";
-import { request, geo, createHtmlElement, removeChilds } from "./utils.js";
+import { setSearch, finalizeClick, formatWeatherData, } from "./getWeather.js";
+import { request, geo, createHtmlElement, removeChilds, weatherQuery } from "./utils.js";
 
 const searchWrapper = document.querySelector(".search-wrapper");
 const searchList = document.querySelector(".search-list");
@@ -66,6 +66,7 @@ const renderSearchResults = (searchResult) => {
 	});
 };
 
+
 searchInput.addEventListener("input", (event) => {
 	const searchString = event.target.value.toLowerCase();
 	if (searchString.length > 2) {
@@ -83,5 +84,32 @@ searchInput.addEventListener("input", (event) => {
 	} else {
 		removeOldResults(searchString);
 		removeClasses();
+	}
+});
+
+
+document.addEventListener("keydown", async (event) => {
+	const mainInput = document.querySelector(".search-input");
+	const searchString = mainInput.value.toLowerCase();
+
+	if (event.code === "Enter" && mainInput.value.length > 2) {
+		finalizeClick(searchString.innerText);
+
+		const searchElement = document.querySelector('.search-element')
+		const lat = searchElement.getAttribute("lat");
+		const lon = searchElement.getAttribute("lon");
+
+		// const lat = event.target.getAttribute("lat");
+		// const lon = event.target.getAttribute("lon");
+
+		request(weatherQuery.getRequestUrl(lat, lon)).then((data) => {
+			const formatedData = formatWeatherData(data.list);
+			setWeatherDataToSessionStorage(formatedData);
+			const weeklyDays = Object.keys(formatedData);
+			weeklyDays.shift();
+			renderWeeklyCards(weeklyDays);
+		});
+	} else {
+
 	}
 });

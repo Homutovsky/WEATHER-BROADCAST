@@ -1,5 +1,6 @@
 export const geoKey = "dc1c4dd507e246778fa00eb113d80c9e";
 export const weatherKey = "a404df93a9aa64f583699a7d59cf1224";
+export const flickrKey = "3ccd8c73603482c1dfb8a13e3f0b3b5b";
 
 export const daysOfWeek = [
 	"Sunday",
@@ -14,6 +15,13 @@ export const daysOfWeek = [
 export async function request(url) {
 	const response = await fetch(url);
 	return await response.json();
+}
+
+export const flickr = {
+	url: 'https://www.flickr.com/',
+	getRequestUrl(tags) {
+		return (`${this.url}services/rest/?method=flickr.photos.search&api_key=${flickrKey}&tags=${tags}&tag_mode=all&extras=url_h&format=json&nojsoncallback=1`);
+	},
 }
 
 export const geo = {

@@ -31,15 +31,3 @@ request(flickr.getRequestUrl(tags))
             };
         });
     });
-
-
-    // const defaultData = {
-//     photos: {
-//         photo: [
-//             'https://live.staticflickr.com/65535/50614166012_adb10128a1_h.jpg',
-//             'https://live.staticflickr.com/65535/52277006822_05473162a0_h.jpg',
-//             'https://live.staticflickr.com/65535/52278705520_8da4f92f2e_h.jpg',
-//             'https://live.staticflickr.com/65535/52278712790_abc7cfa32e_h.jpg',
-//             'https://live.staticflickr.com/65535/52278274238_35a9428f6b_h.jpg']
-//     }
-// };
