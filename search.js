@@ -96,7 +96,7 @@ export const requestWeather = (lat, lon) => {
 		const weeklyDays = Object.keys(formatedData);
 		weeklyDays.shift();
 		renderWeeklyCards(weeklyDays);
-		setInitialContent()
+		setInitialContent();
 	})
 }
 

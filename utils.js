@@ -27,8 +27,8 @@ export async function request(url) {
 
 export const flickr = {
 	url: 'https://www.flickr.com/',
-	getRequestUrl(tags) {
-		return (`${this.url}services/rest/?method=flickr.photos.search&api_key=${flickrKey}&tags=${tags}&tag_mode=all&extras=url_h&format=json&nojsoncallback=1`);
+	getRequestUrl(tags, text) {
+		return (`${this.url}services/rest/?method=flickr.photos.search&api_key=${flickrKey}&tags=${tags}&text=${text}&tag_mode=all&extras=url_h&format=json&nojsoncallback=1`);
 	},
 }
 
@@ -37,6 +37,9 @@ export const geo = {
 	getRequestUrl(city) {
 		return `${this.url}geocode/v1/json?q=${city}&key=${geoKey}&language=en&pretty=1`;
 	},
+	getCityBy(lat, lng) {
+		return `${this.url}geocode/v1/json?q=${lat}+${lng}&key=${geoKey}&language=en&pretty=1`;
+	}
 };
 
 export const weatherQuery = {

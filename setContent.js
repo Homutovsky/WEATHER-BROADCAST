@@ -1,11 +1,19 @@
 import { getCorrespondingWeatherData} from "./getCorrespondingWeatherData.js";
 import { getDayOfWeek} from "./utils.js";
+import { getBackgroundImage} from "./getBackgroundImage.js";
+
 
 
 export const setContent = (day, time) => {
 
 	const { correspondingWeatherData, timeRanges } =
 		getCorrespondingWeatherData(day, time);
+		const weatherDescription = correspondingWeatherData.weather[0].description;
+		const weatherTags = correspondingWeatherData.weather[0].main;
+
+		const timeForSearch = time.split(':')[0]
+
+		getBackgroundImage(`weather,city,${weatherTags}`,`weather ${weatherDescription}`, +timeForSearch )
 
 	const dateToday = document.querySelector(".date-today");
 	dateToday.textContent = day;
@@ -26,9 +34,13 @@ export const setContent = (day, time) => {
 	timeControl.setAttribute("type", "range");
 	timeControl.setAttribute("min", 1);
 	timeControl.setAttribute("max", timeRanges.length);
-
+	
 	const temperature = document.querySelector(".temperature");
-	temperature.textContent = `temperature: ${Math.round(correspondingWeatherData.main.temp)} °C`
+	temperature.textContent = `${Math.round(correspondingWeatherData.main.temp)} °C`
+
+	const weatherText = document.querySelector('.weatherDescription');
+	weatherText.textContent = `${correspondingWeatherData.weather[0].description}`
+
 
 	const humidity = document.querySelector(".humidity");
 	humidity.textContent = `humidity: ${correspondingWeatherData.main.humidity}`;

@@ -1,19 +1,19 @@
 import { request, flickr } from "./utils.js";
 
-const getBackgroundImage = (tags) => {
-  const hours = new Date().getHours();
-
+export const getBackgroundImage = (tags, text, hours) => {
+  // const hours = new Date().getHours();
+  let updatedTags;
   if (hours <= 6) {
-    tags = 'night,twilight,moon';
+    updatedTags = 'night,twilight,moon,' + tags;
   } else if (hours >= 6 && hours <= 12) {
-    tags = 'morning,sunrise';
+    updatedTags = 'morning,' + tags;
   } else if (hours >= 12 && hours <= 18) {
-    tags = 'afternoon,sun,canyon';
+    updatedTags = 'afternoon,' + tags;
   } else {
-    tags = 'evening,sunset,nature';
+    updatedTags = 'evening,'+ tags;
   }
 
-  request(flickr.getRequestUrl(tags))
+  request(flickr.getRequestUrl(tags, text))
     .then(data => {
       const imgUrl = data.photos.photo.reduce((acc, current) => {
         if (current.url_h) {
@@ -26,14 +26,14 @@ const getBackgroundImage = (tags) => {
       }, [])
 
       const headerBtn = document.querySelector(".header-button");
-      headerBtn.addEventListener("click", () => {
+      // headerBtn.addEventListener("click", () => {
         const img = new Image();
-        const randomNumber = Math.round(Math.random() * (90 - 1) + 1)
+        const randomNumber = Math.round(Math.random() * (20 - 1) + 1)
         img.src = imgUrl[randomNumber];
         img.addEventListener("load", () => {
           document.body.style.backgroundImage = `url('${img.src}')`;
         });
-      })
+      // })
     });
 }
-getBackgroundImage()
+// getBackgroundImage()
