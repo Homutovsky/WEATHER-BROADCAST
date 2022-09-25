@@ -1,6 +1,4 @@
-import { request, weatherQuery } from "./utils.js";
-import { removeClasses, removeOldResults } from "./search.js";
-import { renderWeeklyCards } from "./renderCards.js";
+import { removeClasses, removeOldResults, requestWeather} from "./search.js";
 
 export const formatWeatherData = (weatherData) => {
 	return weatherData.reduce((acc, currData) => {
@@ -18,7 +16,7 @@ export const formatWeatherData = (weatherData) => {
 	}, {});
 };
 
-const setWeatherDataToSessionStorage = (formatedData) => {
+export const setWeatherDataToSessionStorage = (formatedData) => {
 	Object.keys(formatedData).forEach((day) => {
 		window.sessionStorage.setItem(day, JSON.stringify(formatedData[day]));
 	});
@@ -39,13 +37,7 @@ export const setSearch = () => {
 			const lat = event.target.getAttribute("lat");
 			const lon = event.target.getAttribute("lon");
 
-			request(weatherQuery.getRequestUrl(lat, lon)).then((data) => {
-				const formatedData = formatWeatherData(data.list);
-				setWeatherDataToSessionStorage(formatedData);
-				const weeklyDays = Object.keys(formatedData);
-				weeklyDays.shift();
-				renderWeeklyCards(weeklyDays);
-			});
+			requestWeather(lat, lon);
 		});
 	});
 };

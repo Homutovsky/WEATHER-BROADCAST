@@ -12,6 +12,14 @@ export const daysOfWeek = [
 	"Saturday",
 ];
 
+export const getTodayData = () =>  new Date().toISOString().split("T")[0];
+
+export const getNearestTime = () => {
+		const currentTime = new Date().getHours();
+		const time = currentTime + (3 - (currentTime % 3));
+		return `${time === 24 ? 21 : time}:00:00`
+}
+
 export async function request(url) {
 	const response = await fetch(url);
 	return await response.json();

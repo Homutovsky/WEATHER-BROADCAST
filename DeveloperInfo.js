@@ -7,7 +7,6 @@ const setInformationAboutDeveloper = () => {
 
 		footerInfo.addEventListener("mouseover", () => {
 			footerImg.src = data.avatar_url;
-			console.log(data.avatar_url);
 			footerInfo.after(newFooterContainer);
 			newFooterContainer.className = "create-div";
 			const gitBio = data.bio ? data.bio : "Front-end developer";

@@ -3,6 +3,7 @@ import { getDayOfWeek} from "./utils.js";
 
 
 export const setContent = (day, time) => {
+
 	const { correspondingWeatherData, timeRanges } =
 		getCorrespondingWeatherData(day, time);
 
@@ -11,6 +12,9 @@ export const setContent = (day, time) => {
 
 	const today = document.querySelector(".today");
 	today.textContent = getDayOfWeek(correspondingWeatherData.dt);
+	// Апи возвращает ошибочные данные
+	// Для вечера воскресенья dt = 1664139600 + 000 соответствует 00 часов понедельник
+	// В это время dt_txt содержит значение 2022-09-25 :: 21:00:00
 
 	const nameCity = document.querySelector(".name-city");
 	nameCity.textContent = document.querySelector(".search-input").value;

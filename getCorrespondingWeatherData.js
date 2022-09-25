@@ -1,5 +1,6 @@
 export const getCorrespondingWeatherData = (day, time) => {
 	const weatherData = JSON.parse(window.sessionStorage.getItem(day));
+	
 	let correspondingWeatherData = {};
 	if (time) {
 		correspondingWeatherData = weatherData.find(
