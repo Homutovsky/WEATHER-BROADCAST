@@ -22,6 +22,10 @@ export const getCorrespondingWeatherData = (day, time) => {
 	};
 };
 
+const onTimeControl = (event, day, timeRanges) => {
+	setContent(day, timeRanges[event.target.value - 1]);
+};
+
 const createCard = (day) => {
 	const newCard = createHtmlElement("li", "weather-item");
 	newCard.setAttribute("day", day);
@@ -58,6 +62,7 @@ const createCard = (day) => {
 		`${tempereture} °C`
 	);
 
+
 	newCard.append(
 		cardDayDate,
 		cardDayOfWeek,
@@ -66,8 +71,11 @@ const createCard = (day) => {
 		cardDayTemperature
 	);
 	weatherList.append(newCard);
+
+	
 	newCard.addEventListener("click", (event) => {
-		setContent(day, time);
+			setContent(day, time);
+			window.sessionStorage.setItem('currentDay', day);
 	});
 };
 
@@ -77,7 +85,7 @@ export const renderWeeklyCards = (weeklyDays) => {
 		createCard(day);
 	});
 };
-const renderMainCard = (day) => {
+const renderMainCard = () => {
 	const weatherToday = createHtmlElement("div", "weather-today");
 	const mainContainer = document.querySelector(".main-container");
 	mainContainer.prepend(weatherToday);
@@ -91,6 +99,14 @@ const renderMainCard = (day) => {
 		setContent(today, `${time === 24 ? 21 : time}:00:00`);
 	});
 	const timeControl = createHtmlElement("input", "weather-timeControl");
+
+	const listener = (event) => {
+		const day = window.sessionStorage.getItem("currentDay")
+	
+		const { timeRanges } = getCorrespondingWeatherData(day, time);
+		onTimeControl(event, day, timeRanges)
+	}
+	timeControl.addEventListener("input", listener, true);
 
 	const dateToday = createHtmlElement("h3", "date-today");
 	const weatherWrapper = createHtmlElement("div", "weather-wrapper");
@@ -139,13 +155,6 @@ export const setContent = (day, time) => {
 	timeControl.setAttribute("min", 1);
 	timeControl.setAttribute("max", timeRanges.length);
 
-	const onTimeControl = (event) => {
-		setContent(day, timeRanges[event.target.value - 1]);
-		timeControl.removeEventListener("input", onTimeControl);
-	};
-
-	timeControl.addEventListener("input", onTimeControl);
-
 	const temperature = document.querySelector(".temperature");
 	temperature.textContent = `temperature: ${Math.round(correspondingWeatherData.main.temp)} °C`
 
@@ -159,3 +168,4 @@ export const setContent = (day, time) => {
 	pressure.textContent = `pressure: ${correspondingWeatherData.main.pressure}`
 };
 renderMainCard();
+
