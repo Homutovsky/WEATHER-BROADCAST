@@ -13,7 +13,7 @@ export const setContent = (day, time) => {
 
 		const timeForSearch = time.split(':')[0]
 
-		getBackgroundImage(`weather,city,${weatherTags}`,`weather ${weatherDescription}`, +timeForSearch )
+		getBackgroundImage(`weather,${weatherTags}`,`weather ${weatherDescription}`, +timeForSearch )
 
 	const dateToday = document.querySelector(".date-today");
 	dateToday.textContent = day;
