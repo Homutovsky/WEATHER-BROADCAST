@@ -27,6 +27,7 @@ request(flickr.getRequestUrl(tags))
     .then(data => {
         data.photos.photo.filter(element => {
             if (element.url_h) {
+                console.log(element)
                 images.push(element.url_h)
             };
         });
