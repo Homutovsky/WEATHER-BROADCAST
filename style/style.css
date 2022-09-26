@@ -83,7 +83,7 @@ body {
 }
 
 .weather-today {
-    max-width: 400px;
+    max-width: 500px;
     margin-left: calc(50vw);
     transform: translateX(-50%);
     position: relative;
@@ -166,14 +166,15 @@ body {
 }
 
 .subInformation {
-    width:100%;
-    display:flex;
+    width: 100%;
+    display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.temperature, .weatherDescription {
-    text-align:center;
+.temperature,
+.weatherDescription {
+    text-align: center;
 }
 
 .reset-btn {
@@ -210,6 +211,10 @@ body {
     column-gap: 15px;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.newCityName {
+    font-size: 25px;
 }
 
 .name-city,

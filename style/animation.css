@@ -8,16 +8,16 @@
     animation: allWeather 5s linear infinite;
     background: linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
     position: absolute;
-    left: 600px;
-    top: 240px;
+    left: 0px;
+    top: 0px;
 }
 
 .sunny1 {
     animation: sunny 5s linear infinite;
     background: linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
     position: absolute;
-    left: 965px;
-    top: 240px;
+    left: 0px;
+    top: 0px;
 }
 
 .sunny:after,
@@ -32,13 +32,13 @@
 }
 
 .sunny:after {
-    left: 0px;
-    top: 0px;
+    left: 70px;
+    top: 290px;
 }
 
 .sunny1:after {
-    left: 0px;
-    top: 0px;
+    left: 380px;
+    top: 290px;
 }
 
 
@@ -59,13 +59,13 @@
 }
 
 .cloudy {
-    left: 555px;
-    top: 240px;
+    left: 35px;
+    top: 290px;
 }
 
 .cloudy1 {
-    left: 950px;
-    top: 240px;
+    left: 355px;
+    top: 290px;
 }
 
 .rainy,
@@ -87,13 +87,13 @@
 }
 
 .rainy {
-    left: 555px;
-    top: 240px;
+    left: 35px;
+    top: 290px;
 }
 
 .rainy1 {
-    left: 950px;
-    top: 240px;
+    left: 355px;
+    top: 290px;
 }
 
 .rainy:before,
@@ -226,13 +226,13 @@
 }
 
 .stormy {
-    left: 555px;
-    top: 240px;
+    left: 35px;
+    top: 290px;
 }
 
 .stormy1 {
-    left: 950px;
-    top: 240px;
+    left: 355px;
+    top: 290px;
 }
 
 .stormy:before,
@@ -308,13 +308,13 @@
 }
 
 .cloud-sun {
-    left: 600px;
-    top: 220px;
+    left: 90px;
+    top: 270px;
 }
 
 .cloud-sun1 {
-    left: 1000px;
-    top: 220px;
+    left: 405px;
+    top: 270px;
 }
 
 .cloud-sun:after,

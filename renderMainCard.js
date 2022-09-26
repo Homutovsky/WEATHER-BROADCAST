@@ -1,6 +1,6 @@
-import { createHtmlElement,  daysOfWeek, getTodayData, getNearestTime} from "./utils.js";
-import { setContent} from "./setContent.js";
-import { getCorrespondingWeatherData} from "./getCorrespondingWeatherData.js";
+import { createHtmlElement, daysOfWeek, getTodayData, getNearestTime } from "./utils.js";
+import { setContent } from "./setContent.js";
+import { getCorrespondingWeatherData } from "./getCorrespondingWeatherData.js";
 
 const listener = (event) => {
 	const day = window.sessionStorage.getItem("currentDay")
@@ -9,14 +9,14 @@ const listener = (event) => {
 	onTimeControl(event, day, timeRanges)
 }
 
-let timeOutForChangeImg= null;
+let timeOutForChangeImg = null;
 const inputWithTimeOut = (event) => {
-	if(timeOutForChangeImg !== null) {
+	if (timeOutForChangeImg !== null) {
 		clearTimeout(timeOutForChangeImg);
 	}
 	timeOutForChangeImg = setTimeout(() => {
 		listener(event);
-	}, 250);
+	}, 350);
 }
 
 export const setInitialContent = () => {
@@ -27,8 +27,8 @@ export const setInitialContent = () => {
 	weatherTimeControl.disabled = false;
 
 	const todayData = getTodayData();
-  const time = getNearestTime()
-  setContent(todayData, time)
+	const time = getNearestTime()
+	setContent(todayData, time)
 }
 
 const onTimeControl = (event, day, timeRanges) => {
@@ -50,25 +50,28 @@ const renderMainCard = () => {
 	});
 	const timeControl = createHtmlElement("input", "weather-timeControl");
 
-	
+
 	timeControl.addEventListener("input", inputWithTimeOut, true);
-	
+
 	timeControl.type = 'range';
 	timeControl.disabled = true;
 	const dateToday = createHtmlElement("h3", "date-today", todayData);
 	const weatherWrapper = createHtmlElement("div", "weather-wrapper");
-	const today = createHtmlElement("h1", "today",dayOfWeek );
+	const today = createHtmlElement("h1", "today", dayOfWeek);
 	weatherWrapper.append(today);
 
 	const temperature = createHtmlElement("h2", "temperature", "Tempereture: -- °C");
+	const animation = createHtmlElement("div", 'animation');
+	const animation1 = createHtmlElement("div", 'animation1');
+
 	const weatherDescription = createHtmlElement("h2", "weatherDescription", "Description: ...");
 	const subInformation = createHtmlElement("div", 'subInformation');
-	subInformation.prepend(temperature, weatherDescription)
+	subInformation.prepend(temperature, animation, animation1, weatherDescription)
 
 	const mainInformation = createHtmlElement("div", "main-information");
 	const nameCity = createHtmlElement("h2", "name-city");
 	const time = createHtmlElement("h2", "time", 'Weather for: --:--:--');
-	
+
 	mainInformation.prepend(nameCity, time, timeControl, subInformation);
 
 	const extraInformation = createHtmlElement("div", "extra-information");

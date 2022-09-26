@@ -1,7 +1,7 @@
-import { setSearch, finalizeClick, formatWeatherData, setWeatherDataToSessionStorage} from "./getWeather.js";
+import { setSearch, finalizeClick, formatWeatherData, setWeatherDataToSessionStorage } from "./getWeather.js";
 import { request, geo, createHtmlElement, removeChilds, weatherQuery } from "./utils.js";
-import { renderWeeklyCards} from "./renderCards.js";
-import { setInitialContent} from "./renderMainCard.js";
+import { renderWeeklyCards } from "./renderCards.js";
+import { setInitialContent } from "./renderMainCard.js";
 
 const searchWrapper = document.querySelector(".search-wrapper");
 const searchList = document.querySelector(".search-list");
@@ -10,6 +10,7 @@ const searchBtn = document.querySelector(".search-btn");
 
 const getSearchResult = (data, searchString) =>
 	data.results.reduce((acc, result) => {
+
 		const {
 			city = "",
 			village = "",
@@ -31,6 +32,7 @@ const getSearchResult = (data, searchString) =>
 						accItem.components.country === country) ||
 					accItem.components.formatted === formatted
 			)
+
 		) {
 			return [...acc, result];
 		} else {
@@ -67,7 +69,6 @@ const renderSearchResults = (searchResult) => {
 		searchList.append(newResult);
 	});
 };
-
 
 searchInput.addEventListener("input", (event) => {
 	const searchString = event.target.value.toLowerCase();
