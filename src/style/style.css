@@ -83,7 +83,7 @@ body {
 }
 
 .weather-today {
-    min-width: 500px;
+    width: 500px;
     margin-left: calc(50vw);
     transform: translateX(-50%);
     position: relative;

@@ -48,6 +48,18 @@ const renderMainCard = () => {
 		const time = getNearestTime();
 		setContent(todayData, time);
 	});
+	const dateToday = createHtmlElement("h3", "date-today", todayData);
+	const weatherWrapper = createHtmlElement("div", "weather-wrapper");
+	const mainInformation = createHtmlElement("div", "main-information");
+	const extraInformation = createHtmlElement("div", "extra-information");
+	weatherToday.prepend(
+		resetBtn,
+		dateToday,
+		weatherWrapper,
+		mainInformation,
+		extraInformation
+	);
+
 	const timeControl = createHtmlElement("input", "weather-timeControl");
 
 
@@ -55,8 +67,8 @@ const renderMainCard = () => {
 
 	timeControl.type = 'range';
 	timeControl.disabled = true;
-	const dateToday = createHtmlElement("h3", "date-today", todayData);
-	const weatherWrapper = createHtmlElement("div", "weather-wrapper");
+
+
 	const today = createHtmlElement("h1", "today", dayOfWeek);
 	weatherWrapper.append(today);
 
@@ -68,25 +80,19 @@ const renderMainCard = () => {
 	const subInformation = createHtmlElement("div", 'subInformation');
 	subInformation.prepend(temperature, animation, animation1, weatherDescription)
 
-	const mainInformation = createHtmlElement("div", "main-information");
+
 	const nameCity = createHtmlElement("h2", "name-city");
 	const time = createHtmlElement("h2", "time", 'Weather for: --:--:--');
 
 	mainInformation.prepend(nameCity, time, timeControl, subInformation);
 
-	const extraInformation = createHtmlElement("div", "extra-information");
+
 	const humidity = createHtmlElement("span", "humidity", "humidity: --");
 	const speedWind = createHtmlElement("span", "speed-wind", "speedWind: --");
 	const pressure = createHtmlElement("span", "pressure", "pressure: --");
 	extraInformation.prepend(humidity, speedWind, pressure);
 
-	weatherToday.prepend(
-		resetBtn,
-		dateToday,
-		weatherWrapper,
-		mainInformation,
-		extraInformation
-	);
+
 };
 
 renderMainCard();
